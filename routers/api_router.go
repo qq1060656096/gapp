@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/qq1060656096/go-gin-app/routers/api/v1/demo"
+	"./api/v1/demo"
 )
 
 // ApiV1 接口v1版本路由
