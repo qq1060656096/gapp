@@ -4,7 +4,7 @@ go gin框架应用脚手架
 ### gapp使用了那些第三方库
 > [**框架: gin**](https://github.com/gin-gonic/gin)
 
-> [**数据库: gorm**](https//github.com/jinzhu/gorm)
+> [**数据库: gorm**](https://github.com/jinzhu/gorm)
 
 > [**.env配置: godotenv**](https://github.com/joho/godotenv)
 
@@ -14,9 +14,7 @@ go gin框架应用脚手架
 gapp                  应用根目录
 ├─dev                  开发者存放项目相关开发信息
 ├─gapp                  应用根目录
-│  ├─Common             核心公共函数目录
-│  ├─Conf               核心配置目录 
-│  ├─Lang               核心语言包目录
+│  ├─langs              核心语言包目录
 │  ├─routers            路由目录
 │  │  ├─api_router.go       接口路由配置文件
 │  │  ├─app_router.go       网页应用路由配置文件
