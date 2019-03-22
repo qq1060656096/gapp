@@ -1,6 +1,8 @@
 package demo
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 func UserAdd(c *gin.Context) {
 
