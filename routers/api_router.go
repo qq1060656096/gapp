@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/qq1060656096/go-gin-app/routers/api/v1/demo"
+	"gapp/routers/api/v1/demo"
 )
 
 // ApiV1 接口v1版本路由
@@ -16,10 +16,10 @@ func ApiV1(engine *gin.Engine) {
 		g.PUT("/demo/gorm/user/:userId", demo.UserUpdate)
 
 
-		//g.GET("/demo/simple/user", demo.UserQuery)
-		g.POST("/demo/simple/post", demo.SimplePost)
-		//g.PUT("/demo/simple/user/:userId", demo.UserUpdate)
-		//g.DELETE("/demo/simple/user/:userId", demo.UserDel)
+		g.GET("/demo/simple/get", demo.Get)
+		g.POST("/demo/simple/post", demo.Post)
+		g.PUT("/demo/simple/put", demo.Put)
+		g.DELETE("/demo/simple/delete", demo.Delete)
 	}
 }
 

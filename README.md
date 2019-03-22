@@ -1,2 +1,4 @@
-# go-gin-app
-go gin应用
+# gapp
+go gin框架应用脚手架
+
+
