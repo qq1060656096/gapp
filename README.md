@@ -1,6 +1,13 @@
 # gapp
 go gin框架应用脚手架
 
+### gapp使用了那些第三方库
+> [**框架: gin**](https://github.com/gin-gonic/gin)
+
+> [**数据库: gorm**](https//github.com/jinzhu/gorm)
+
+> [**.env配置: godotenv**](https://github.com/joho/godotenv)
+
 
 ### gapp目录结构
 ```php
