@@ -1,5 +1,5 @@
 # gapp
-go gin框架应用脚手架
+go gin框架应用脚手架, 帮助你快速搭建golang项目
 
 ### gapp使用了那些第三方库
 > [**框架: gin**](https://github.com/gin-gonic/gin) -> [文档](https://gin-gonic.com/zh-cn/docs/)
