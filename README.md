@@ -53,9 +53,9 @@ gapp                  应用根目录
 > 2. 下载gapp: git clone https://github.com/qq1060656096/gapp.git
 
 ### 4. 配置文件
-> 进入目录: cd gapp
-> 创建配置文件: cp example.env .env 
-> 配置数据
+> 1. 进入目录: cd gapp
+> 2. 创建配置: cp example.env .env 
+> 3. 配置数据
 
 ### 5. 运行gapp
 ```sh
