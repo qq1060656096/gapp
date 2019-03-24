@@ -6,6 +6,9 @@ go gin框架应用脚手架, 帮助你快速搭建golang项目
 > 1. gapp使用了那些golang第三方库
 > 2. gapp目录结构
 > 3. 安装gapp
+> 4. gapp配置
+> 5. 运行gapp
+> 6. 示例文件
 
 ### 1. gapp使用了那些第三方库
 > [**框架: gin**](https://github.com/gin-gonic/gin) -> [文档](https://gin-gonic.com/zh-cn/docs/)
@@ -61,4 +64,15 @@ gapp                  应用根目录
 ```sh
 # 运行gapp
 go run main.go
+```
+
+### 6. gapp示例
+
+```
+# gorm model操作数据库
+gapp/routers/api/v1/demo/gorm.go
+# gorm 执行原生sql
+gapp/routers/api/v1/demo/gorm_raw_sql.go
+# 接口演示get post put delete
+gapp/routers/api/v1/demo/simple.go
 ```
