@@ -6,8 +6,9 @@ import (
 	"time"
 )
 
+// Get 简单请求显示不同主题的模板
+// http://localhost:8080/app/v1/demo/simple-html?theme=default_mobile
 func Get(c *gin.Context) {
-
 	data := gin.H{
 		"title": "gapp演示",
 		"nowDate": time.Now().Format("2006-03-01 00:00:00"),

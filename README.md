@@ -27,6 +27,10 @@ gapp                  应用根目录
 │  ├─models             模型目录
 │  ├─pkg                公共库目录
 │  │  ├─util                通用包目录
+│  ├─resources          资源目录
+│  │  ├─themes              主题(themes)目录
+│  │  │  ├─default              默认主题(default)目录
+│  │  │  ├─default_mobile       默认手机主题(default_mobile)目录
 │  ├─routers            路由目录
 │  │  ├─api_router.go       接口路由配置文件
 │  │  ├─app_router.go       网页应用路由配置文件
@@ -41,7 +45,7 @@ gapp                  应用根目录
 │  │  ├─app                 网页应用目录
 │  │  │  ├─v1                   v1网页应用开发目录
 │  │  │  │  ├─demo                  示例网页应用开发目录
-│  │  │  │  │  ├─simple.go      简单请求示例
+│  │  │  │  │  ├─simple_html.go         简单网页应用示例
 │  │  │  ├─ ...                 vn网页应用开发目录
 │  │  ├─Vendor                  第三方类库目录
 │  ├─.env               配置文件
@@ -71,8 +75,13 @@ go run main.go
 ```
 # gorm model操作数据库
 gapp/routers/api/v1/demo/gorm.go
+
 # gorm 执行原生sql
 gapp/routers/api/v1/demo/gorm_raw_sql.go
+
 # 接口演示get post put delete
 gapp/routers/api/v1/demo/simple.go
+
+# 网页模板示例
+gapp/routers/app/v1/demo/simple_html.go
 ```
