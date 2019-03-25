@@ -10,10 +10,10 @@ import (
 func main() {
 	godotenv.Load(".env")
 	engine := gin.New()
+	engine.LoadHTMLGlob("resources/themes/***/***/*")
 	// 初始化路由
 	routers.InitRouter(engine)
 	// 初始化模型
 	models.InitModel()
-
 	engine.Run(":8080")
 }
