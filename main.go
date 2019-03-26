@@ -13,9 +13,12 @@ import (
 func main() {
 	godotenv.Load(".env")
 
-	logf, err := rotatelogs.New(
-		"var/log/gin.%Y%m%d.%H%M.log",
-		rotatelogs.WithLinkName("/var/log/access_log"),
+	// 设置分割日志
+	//logWriterFormat := "var/log/gin.%Y%m%d.%H%M.log"
+	logWriterFormat := "var/log/gin.%Y%m%d.log"
+	logWriter, err := rotatelogs.New(
+		logWriterFormat,
+		rotatelogs.WithLinkName("var/log/access_log.log"),
 		rotatelogs.WithMaxAge(24 * time.Hour),
 		rotatelogs.WithRotationTime(time.Hour),
 	)
@@ -25,7 +28,7 @@ func main() {
 	}
 
 
-	gin.DefaultWriter = logf
+	gin.DefaultWriter = logWriter
 	engine := gin.Default()
 	engine.LoadHTMLGlob("resources/themes/***/***/*")
 	// 初始化路由
