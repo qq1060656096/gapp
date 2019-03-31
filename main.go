@@ -34,6 +34,6 @@ func main() {
 	// 初始化路由
 	routers.InitRouter(engine)
 	// 初始化模型
-	models.InitModel()
+	models.ConnectDB()
 	engine.Run(":8080")
 }
