@@ -80,6 +80,6 @@ func GetUserBindAllAccounts(uid uint) []*UsersAccountsModel {
 	models.DB.Where("uid = ?", uid).
 		Where("deleted_at = ?", 0).
 		Unscoped().
-		Find(ua)
+		Find(&ua)
 	return ua
 }

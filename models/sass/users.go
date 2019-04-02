@@ -5,7 +5,7 @@ import "gapp/models"
 // UsersModel 用户模型
 type UsersModel struct {
 	models.BaseModel
-	Uid uint `json:"uid" gorm:"primary_key"`
+	Uid uint `gorm:"primary_key" json:"uid"`
 	Pass string `json:"pass" form:"pass" xml:"pass" binding:"required"`
 }
 
@@ -24,7 +24,7 @@ func UserCreate(u *UsersModel) (bool) {
 }
 
 // 用户注册
-func UsersRegister(u *UsersModel, ua *UsersAccountsModel) bool {
+func UserRegister(u *UsersModel, ua *UsersAccountsModel) bool {
 	// 1. 创建账户
 	// 2. 绑定用户账户
 	b := UserCreate(u)
