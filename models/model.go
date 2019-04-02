@@ -19,7 +19,6 @@ const (
 var DB *gorm.DB
 
 
-
 // ConnectDB 连接数据库
 func ConnectDB() {
 	driver := os.Getenv("DB_DRIVER")
@@ -55,12 +54,16 @@ func ConnectDB() {
 			os.Getenv("DB_CHARSET"),
 		)
 	default:
-		log.Fatalf("sgorm.ConnectDB driver err: %s", driver)
+		log.Fatalf("models.ConnectDB driver err: %s", driver)
 	}
 	maxConnections, _ := strconv.Atoi(os.Getenv("DB_MAX_CONNECTIONS"))
 	openConnections, _ := strconv.Atoi(os.Getenv("DB_MAX_OPEN_CONNECTIONS"))
 	DB.DB().SetMaxOpenConns(maxConnections)
 	DB.DB().SetMaxIdleConns(openConnections)
+	dbLog := os.Getenv("DB_LOG")
+	if dbLog == "true" {
+		DB.LogMode(true)
+	}
 }
 
 // ConnectDbMySQL 初始化Mysql db
@@ -77,7 +80,7 @@ func ConnectDbMySQL(host, port, database, user, pass , charset string) *gorm.DB 
 
 	db, err := gorm.Open(DRIVER_MY_SQL, dns)
 	if err != nil {
-		log.Fatalf("sgorm.InitDbMySQL err: %v", err)
+		log.Fatalf("models.InitDbMySQL err: %v", err)
 	}
 	db.SingularTable(true)
 	maxConnections, _ := strconv.Atoi(os.Getenv("DB_MAX_CONNECTIONS"))
@@ -100,7 +103,7 @@ func ConnectDbPostgreSQL(host, port, database, user, pass string) *gorm.DB {
 
 	db, err := gorm.Open(DRIVER_POSTGRE_SQL, dns)
 	if err != nil {
-		log.Fatalf("sgorm.ConnectDbPostgreSQL err: %v", err)
+		log.Fatalf("models.ConnectDbPostgreSQL err: %v", err)
 	}
 	db.SingularTable(true)
 	return db
@@ -115,7 +118,7 @@ func ConnectDbSqlite3(host string) *gorm.DB {
 
 	db, err := gorm.Open(DRIVER_SQLITE3, dns)
 	if err != nil {
-		log.Fatalf("sgorm.ConnectDbSqlite3 err: %v", err)
+		log.Fatalf("models.ConnectDbSqlite3 err: %v", err)
 	}
 	db.SingularTable(true)
 	return db
@@ -134,7 +137,7 @@ func ConnectDbSqlServer(host, port, database, user, pass string) *gorm.DB {
 
 	db, err := gorm.Open(DRIVER_SQL_SERVER, dns)
 	if err != nil {
-		log.Fatalf("sgorm.ConnectDbSqlServer err: %v", err)
+		log.Fatalf("models.ConnectDbSqlServer err: %v", err)
 	}
 	db.SingularTable(true)
 	return db
