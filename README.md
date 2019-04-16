@@ -69,6 +69,54 @@ gapp                  应用根目录
 ### 3. 安装gapp
 > 1. 查看GOPATH路径: go env 命令查看 GOPATH 路径
 > 2. 下载gapp: git clone https://github.com/qq1060656096/gapp.git
+> 3. sql导入MySQL数据库
+```sql
+DROP TABLE IF EXISTS `demo_user`;
+CREATE TABLE `demo_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `pass` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pass` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
+  `created_at` int(20) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(20) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `deleted_at` int(20) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Table structure for users_accounts
+-- ----------------------------
+DROP TABLE IF EXISTS `users_accounts`;
+CREATE TABLE `users_accounts` (
+  `uid` int(11) unsigned NOT NULL,
+  `account_name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '账户',
+  `account_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '账户类型: 1->手机号码, 2 -> 邮箱, 3 -> 微信',
+  `created_at` int(20) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(20) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `deleted_at` int(20) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  UNIQUE KEY `uniq_uaa` (`uid`,`account_name`,`account_type`,`deleted_at`) USING BTREE COMMENT '唯一索引',
+  UNIQUE KEY `uniq_index` (`account_name`,`account_type`,`deleted_at`) USING BTREE COMMENT '唯一索引',
+  KEY `idx_uid` (`uid`) USING BTREE COMMENT '用户uid'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
 
 ### 4. 配置文件
 > 1. 进入目录: cd gapp
