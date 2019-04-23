@@ -28,6 +28,9 @@ func ApiV1(engine *gin.Engine) {
 		g.POST("/demo/simple/post", demo.Post)
 		g.PUT("/demo/simple/put", demo.Put)
 		g.DELETE("/demo/simple/delete", demo.Delete)
+
+		// 简单验证示例
+		g.POST("/demo/validator/post", demo.Validator)
 	}
 }
 
