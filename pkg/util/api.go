@@ -16,6 +16,35 @@ type ApiPagingJsonResult struct {
 	PageSize int 		`json:"pageSize"`
 	Lists interface{} 	`json:"lists"`
 }
+// NewApiJsonResult 创建 ApiJsonResult
+func NewApiJsonResult(code string, message string) *ApiJsonResult {
+	return &ApiJsonResult{
+		Code: code,
+		Message: message,
+	}
+}
+
+// Simple 普通数据返回
+func (o *ApiJsonResult) Simple (data interface{}) *ApiJsonResult {
+	o.Data = data
+	return o
+}
+
+// Paging 分页
+func (o *ApiJsonResult) Paging(lists interface{}, totalCount, page int, pageSize int) *ApiJsonResult {
+	totalPageCount := 0
+	if pageSize > 0 {
+		totalPageCount = int(math.Ceil(float64(totalCount/pageSize)))
+	}
+	o.Data = ApiPagingJsonResult{
+		TotalCount: totalCount,
+		TotalPageCount: totalPageCount,
+		Page: page,
+		PageSize: pageSize,
+		Lists: lists,
+	}
+	return o
+}
 
 // GetApiJsonResult 获取接口json返回值
 func GetApiJsonResult(code string, message string, data interface{}) *ApiJsonResult {

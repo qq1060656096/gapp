@@ -144,3 +144,16 @@ gapp/routers/api/v1/demo/simple.go
 # 网页模板示例
 gapp/routers/app/v1/demo/simple_html.go
 ```
+
+
+## 开发命令
+```sh
+# 编译所有平台二进制可执行文件
+make all
+
+# 开发时运行
+make dev
+
+# 清空编译二进制文件
+make clear
+```

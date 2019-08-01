@@ -29,7 +29,7 @@ func UserAdd(c *gin.Context) {
 	c.ShouldBind(&gormDemoUser)
 	// 保存数据到数据库
 	models.DB.Create(&gormDemoUser)
-	c.JSON(http.StatusOK, util.GetApiJsonResult("200", "success", gormDemoUser))
+	c.JSON(http.StatusOK, util.NewApiJsonResult("200", "success").Simple(gormDemoUser))
 }
 
 // UserDel删除记录
@@ -41,15 +41,15 @@ func UserDel(c *gin.Context) {
 	id := c.Param("userId")
 	models.DB.Where("id = ?", id).First(&gormDemoUser)
 	if gormDemoUser.ID < 1{
-		c.JSON(http.StatusOK, util.GetApiJsonResult("404", "not found", nil))
+		c.JSON(http.StatusOK, util.NewApiJsonResult("404", "not found").Simple(nil))
 		return
 	}
 	gormDemoUser.ID, _ = strconv.Atoi(id)
 	isDel := models.DB.Delete(gormDemoUser).RowsAffected
 	if isDel < 1 {
-		c.JSON(http.StatusOK, util.GetApiJsonResult("200", "fail", isDel))
+		c.JSON(http.StatusOK, util.NewApiJsonResult("200", "fail").Simple(isDel))
 	}
-	c.JSON(http.StatusOK, util.GetApiJsonResult("200", "success", isDel))
+	c.JSON(http.StatusOK, util.NewApiJsonResult("200", "success").Simple(isDel))
 }
 
 // UserUpdate 更新记录
@@ -61,12 +61,12 @@ func UserUpdate(c *gin.Context) {
 	id := c.Param("userId")
 	models.DB.Where("id = ?", id).First(&gormDemoUser)
 	if gormDemoUser.ID < 1{
-		c.JSON(http.StatusOK, util.GetApiJsonResult("404", "not found", gormDemoUser))
+		c.JSON(http.StatusOK, util.NewApiJsonResult("404", "not found").Simple(gormDemoUser))
 		return
 	}
 	c.ShouldBind(&updateGormDemoUser)
 	models.DB.Model(&gormDemoUser).Update(updateGormDemoUser)
-	c.JSON(http.StatusOK, util.GetApiJsonResult("200", "success", gormDemoUser))
+	c.JSON(http.StatusOK, util.NewApiJsonResult("200", "success").Simple(gormDemoUser))
 }
 
 // UserQuery 分页查询数据
@@ -81,7 +81,7 @@ func UserQuery(c *gin.Context) {
 	offset := (page-1)*pageSize
 	models.DB.Model(&GormDemoUser{}).Where("id > 0").Count(&count)
 	models.DB.Offset(offset).Limit(pageSize).Find(&listGormDomeUser)
-	c.JSON(http.StatusOK, util.GetApiJsonPagingResult("200", "success", listGormDomeUser, count, page, pageSize))
+	c.JSON(http.StatusOK, util.NewApiJsonResult("200", "success").Paging(listGormDomeUser, count, page, pageSize))
 }
 
 // UserDetail gormc查询单挑记录
@@ -92,5 +92,5 @@ func UserDetail(c *gin.Context) {
 	var gormDemoUser GormDemoUser
 	id := c.Param("userId")
 	models.DB.Where("id = ?", id).First(&gormDemoUser)
-	c.JSON(http.StatusOK, util.GetApiJsonResult("200", "success", gormDemoUser))
+	c.JSON(http.StatusOK, util.NewApiJsonResult("200", "success").Simple(gormDemoUser))
 }
