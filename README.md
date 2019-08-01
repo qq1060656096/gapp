@@ -11,6 +11,23 @@ go gin框架应用脚手架, 帮助你快速搭建golang项目
 | 多版本app|支持  |
 
 
+## 开发命令
+```sh
+# 编译所有平台二进制可执行文件
+make all
+
+# 编译所有平台二进制可执行文件,并制定可执行文件名
+make all appName=devGapp
+make all appName=stageGapp
+make all appName=gapp
+
+# 开发时运行
+make dev
+
+# 清空编译二进制文件
+make clear
+```
+
 ## gapp使用说明
 > 1. gapp使用了那些golang第三方库
 > 2. gapp目录结构
@@ -127,7 +144,7 @@ CREATE TABLE `users_accounts` (
 ### 5. 运行gapp
 ```sh
 # 运行gapp
-go run main.go
+bin/mac/64/gapp
 ```
 
 ### 6. gapp示例
@@ -146,15 +163,3 @@ gapp/routers/api/v1/demo/simple.go
 gapp/routers/app/v1/demo/simple_html.go
 ```
 
-
-## 开发命令
-```sh
-# 编译所有平台二进制可执行文件
-make all
-
-# 开发时运行
-make dev
-
-# 清空编译二进制文件
-make clear
-```
