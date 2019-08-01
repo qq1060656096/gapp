@@ -62,6 +62,7 @@ gapp                  应用根目录
 │  ├─.env               配置文件
 │  ├─example.env        示例配置文件
 │  ├─LICENSE.txt        授权协议文件
+│  ├─Makefile         	makefile文件
 │  ├─README.txt         README文件
 │  └─main.go            入口文件
 ```
