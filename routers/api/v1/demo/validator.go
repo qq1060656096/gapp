@@ -1,9 +1,9 @@
 package demo
 
 import (
-	"gapp/pkg/util"
-	"github.com/gin-gonic/gin"
 	"github.com/asaskevich/govalidator"
+	"github.com/gin-gonic/gin"
+	"github.com/qq1060656096/go-api"
 	"log"
 	"net/http"
 )
@@ -42,8 +42,8 @@ func Validator(c *gin.Context) {
 	// 验证数据
 	if _, err := govalidator.ValidateStruct(&r); err != nil {
 		errMap := govalidator.ErrorsByField(err)
-		c.JSON(http.StatusOK, util.GetApiJsonResult("422", "govalidator fail", errMap))
+		c.JSON(http.StatusOK, api.NewResult("422", "govalidator fail").Simple(errMap))
 		return
 	}
-	c.JSON(http.StatusOK, util.GetApiJsonResult("200", "success", nil))
+	c.JSON(http.StatusOK, api.NewResult("200", "success"))
 }

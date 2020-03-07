@@ -1,39 +1,42 @@
 package main
 
 import (
-	"gapp/models"
 	"gapp/routers"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/lestrrat/go-file-rotatelogs"
-	"log"
+	"github.com/sirupsen/logrus"
+	"github.com/qq1060656096/go-common"
+	"strings"
 	"time"
 )
 
 func main() {
-	godotenv.Load(".env")
-
+	godotenv.Load(".app.env", ".db.env", ".redis.env")
+	logDir := common.OsEnvManager.Get("LOG_DIR")
+	logDir = strings.TrimRight(logDir, "/")
 	// 设置分割日志
-	//logWriterFormat := "var/log/gin.%Y%m%d.%H%M.log"
-	logWriterFormat := "var/log/gin.%Y%m%d.log"
+	logWriterFormat := logDir + "/gapp.%Y%m%d.log"
 	logWriter, err := rotatelogs.New(
 		logWriterFormat,
-		rotatelogs.WithLinkName("var/log/access_log.log"),
+		rotatelogs.WithLinkName(logDir + "/gapp.access.log"),
 		rotatelogs.WithMaxAge(24 * time.Hour),
 		rotatelogs.WithRotationTime(time.Hour),
 	)
 	if err != nil {
-		log.Printf("failed to create rotatelogs: %s", err)
+		logrus.Errorf("gapp.rotatelogs.New.failed: %s", err)
 		return
 	}
+	// 初始化数据库和redis连接
+	common.DbConnInit()
+	common.RedisConnInit()
 
-
+	logrus.SetOutput(logWriter)
 	gin.DefaultWriter = logWriter
 	engine := gin.Default()
 	engine.LoadHTMLGlob("resources/themes/***/***/*")
 	// 初始化路由
 	routers.InitRouter(engine)
-	// 初始化模型
-	models.ConnectDB()
-	engine.Run(":8080")
+	addr := common.OsEnvManager.Get("ADDR")
+	engine.Run(addr)
 }
