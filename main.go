@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	godotenv.Load(".app.env", ".db.env", ".redis.env")
+	godotenv.Load(".app.env", ".db.env", ".cache.env")
 	logDir := common.OsEnvManager.Get("LOG_DIR")
 	logDir = strings.TrimRight(logDir, "/")
 	// 设置分割日志

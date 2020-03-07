@@ -76,7 +76,9 @@ gapp                  应用根目录
 │  │  ├─var                 变量目录(其内容在系统正常运行期间会不断更改的文件)
 │  │  │  ├─log                  日志存放目录
 │  │  ├─Vendor              第三方类库目录
-│  ├─.env               配置文件
+│  ├─.app.env         	应用配置文件
+│  ├─.db.env      		数据库配置文件
+│  ├─.cache.env        	缓存配置文件
 │  ├─example.env        示例配置文件
 │  ├─LICENSE.txt        授权协议文件
 │  ├─Makefile         	makefile文件
